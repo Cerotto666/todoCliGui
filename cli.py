@@ -30,8 +30,9 @@ while(scelta != Actions.USCITA):
             os.system('cls')
             listFile()
             print()
-            print("Cancella")
-            input()
+            indice = input("Inserisci l'indice dell'elemento da cancellare(o esci per tornare indietro senza cancellare): ")
+            if(indice != 'esci'):
+                cancella(int(indice))
         case Actions.MODIFICA:
             os.system('cls')
             listFile()
