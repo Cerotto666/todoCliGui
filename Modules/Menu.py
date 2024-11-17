@@ -55,11 +55,12 @@ def default_case(scelta):
     input()
 
 def modifica_file():
-    os.system('cls')
-    listFile()
-    print()
+
     indice = ""
     while indice != 'esci':
+        os.system('cls')
+        listFile()
+        print()
         indice = input("Inserisci l'indice dell'elemento da editare(o esci per tornare indietro senza modificare): ")
         if (indice != 'esci'):
             gestisci_edit(indice)
@@ -68,9 +69,46 @@ def modifica_file():
 
 def gestisci_edit(indice):
     try:
-        mostra_todos(int(indice))
+        os.system('cls')
+        if is_todos(int(indice)):
+            scelta_edit = -1
+            while scelta_edit != Actions.USCITA:
+                os.system('cls')
+                scelta_edit = stampa_menu_edit()
+                match scelta_edit:
+                    case Actions.EDIT_AGGIUNGI:
+                        aggiungi_edit(indice)
+                    case Actions.EDIT_MODIFICA:
+                        modifica_edit(int(indice))
+                    case Actions.EDIT_CANCELLA:
+                       cancella_edit(int(indice))
+                    case Actions.USCITA:
+                        print()
+                    case _:
+                        if scelta_edit != Actions.INPUT_NON_VALIDO:
+                            print()
+                            print("Scelta non valida")
+                        input()
     except ValueError:
         print()
         print("Input non valido inserisci un numero")
         print("-" * 31)
         print()
+        input()
+
+def stampa_menu_edit():
+    print("-" * 31)
+    print("1) Aggiungi todo")
+    print("2) Modifica todo")
+    print("3) Cancella todo")
+    print("0) Esci")
+    print("-" * 31)
+    print()
+    try:
+        scelta_edit = int(input("Fai la tua scelta: "))
+    except ValueError:
+        print()
+        print("Input non valido inserisci un numero")
+        print()
+        scelta_edit = Actions.INPUT_NON_VALIDO
+    return scelta_edit
