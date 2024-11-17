@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 
 directory = Path("./Files")
 def listFile():
@@ -26,7 +27,27 @@ def init():
     if not directory.exists():
         directory.mkdir(parents=True)
 
-def crea_file(filename):
+def crea(filename):
     file_path = directory / f"{filename}.txt"
     file_path.touch(exist_ok=True)
     print(f"File creato: {file_path}")
+
+def mostra_todos(indice):
+    lista_file = [file.name for file in directory.iterdir() if file.is_file()]
+    try:
+        file_path = directory / f"{lista_file[indice-1]}"
+        if file_path.exists():
+            print_todos(file_path)
+    except IndexError:
+        print()
+        print("L'elemento non esiste")
+        print("-" * 31)
+        print()
+
+def print_todos(file_path):
+    os.system('cls')
+    righe = file_path.read_text().splitlines()
+    for index, riga in enumerate(righe):
+        print(str(index) + ") " + riga)
+    print("-" * 50)
+    print()

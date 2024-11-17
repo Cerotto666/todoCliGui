@@ -1,4 +1,3 @@
-from Modules.Actions import Actions
 from Modules.Menu import *
 import os
 
@@ -14,11 +13,7 @@ while(scelta != Actions.USCITA):
         case Actions.CANCELLA:
             cancella_file()
         case Actions.MODIFICA:
-            os.system('cls')
-            listFile()
-            print()
-            print("Modifica")
-            input()
+            modifica_file()
         case Actions.USCITA:
             esci_programma()
         case _:
