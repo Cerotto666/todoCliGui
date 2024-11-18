@@ -1,4 +1,4 @@
-from Modules.Menu import *
+from Modules.MenuCli import *
 import os
 
 scelta = -1
