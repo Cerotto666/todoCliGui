@@ -1,7 +1,6 @@
 
 import os
-from Utils import CliUtils
-import Constants
+from Modules import Constants
 
 
 def listFile():

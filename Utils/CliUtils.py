@@ -37,7 +37,7 @@ def modifica_edit(indice):
     while errore:
         try:
             errore = False
-            mostra_todos(int(indice), Constants.directory)
+            mostra_todos(int(indice))
             todos = Funcions.get_todos(int(indice))
             modifica_indice = input("Quale todo vuoi modificare (esci per uscire): ")
             if modifica_indice != 'esci':
@@ -62,7 +62,7 @@ def cancella_edit(indice):
     while errore:
         try:
             errore = False
-            mostra_todos(int(indice), Constants.directory)
+            mostra_todos(int(indice))
             todos = Funcions.get_todos(int(indice))
             elimina_indice = input("Quale todo vuoi cancellare (esci per uscire): ")
             if elimina_indice != 'esci':

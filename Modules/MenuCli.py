@@ -47,11 +47,12 @@ def crea_file():
 Metodo che si occupa della cancellazione di uno dei file di todos dalla memoria
 """
 def cancella_file():
-    os.system('cls')
-    listFile()
-    print()
     indice = ""
     while indice != 'esci':
+        os.system('cls')
+        file_list = listFile()
+        CliUtils.stampa_lista(file_list)
+        print()
         indice = input("Inserisci l'indice dell'elemento da cancellare(o esci per tornare indietro senza cancellare): ")
         if (indice != 'esci'):
             try:
