@@ -1,6 +1,6 @@
 from Modules.Funcions import *
 import os
-from Utils import CliUtils
+from CliUtils import CliUtils
 from Modules.Constants import Actions
 """
 Classe di interfaccia con la linea di comando
