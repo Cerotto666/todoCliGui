@@ -1,10 +1,13 @@
 from GuiUtils import windows as w
 import PySimpleGUI as sg
 from Modules.Constants import Windows_name as wn
+from Modules import Funcions as f
 
 def handle_home():
     layout = w.get_layout_home()
-    window = sg.Window("Home", layout)
+    window = sg.Window("Home", layout, finalize=True)
+    files = f.listFile(True)
+    window['todos'].update(values=files)
 
     while True:
         event, values = window.read()

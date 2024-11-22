@@ -3,11 +3,14 @@ import os
 from Modules import Constants
 
 
-def listFile():
+def listFile(gui=False):
     file_list = []
     for index, file_path in enumerate(Constants.directory.iterdir()):
         if file_path.is_file() and file_path.suffix == ".txt":
-            file_list.append(str(index + 1) + ") - " +file_path.name)
+            if gui:
+                file_list.append(file_path.name)
+            else:
+                file_list.append(str(index + 1) + ") - " +file_path.name)
     return file_list
 
 

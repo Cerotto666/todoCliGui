@@ -3,6 +3,7 @@ import os
 import sys
 from Modules.Constants import Windows_name as wn
 from GuiUtils import windows, gestione_finestre as gf
+from Modules import Funcions as f
 
 # Gestione del percorso in base all'ambiente (sviluppo o eseguibile)
 if getattr(sys, 'frozen', False):
@@ -11,8 +12,7 @@ else:
     base_path = os.path.dirname(__file__)
 
 sg.theme("DarkBlue14")
-layout = windows.get_layout_home()
-window = sg.Window("Gestione Layout", layout)
+
 current_window = wn.HOME
 
 while current_window:

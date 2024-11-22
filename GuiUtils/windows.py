@@ -3,9 +3,14 @@ from GuiUtils import utils as u
 
 def get_layout_home():
     return [
-        [sg.Text("TODO APP", font=("Helvetica", 20), justification="center", size=(20, 1))],
-        [sg.Column([[sg.Text("_" * 30, justification="center")]], justification="center")],
+        [sg.Column([[sg.Text("TODO APP", font=("Helvetica", 20), justification="center", size=(20, 1))]],
+                   justification="center")],
+        [sg.Column([[sg.Text("_" * 80, justification="center")]], justification="center")],
         [sg.Column(
+            [
+                [sg.Listbox(values=["a","b","c"], key="todos", enable_events=True, size = [60,20], expand_x=True, expand_y=True,pad=(30,15))]
+            ]),
+        sg.Column(
             [
                 [sg.Button("CREA", size=(15, 2), button_color=("white", "#28a745"), font=("Helvetica", 12))],
                 [sg.Button("RINOMINA", size=(15, 2), button_color=("white", "#6c757d"), font=("Helvetica", 12))],
@@ -15,9 +20,25 @@ def get_layout_home():
                 [sg.Text("")],  # Spazio vuoto
                 [sg.Button("Esci", size=(15, 2), button_color=("white", "#6C757D"), font=("Helvetica", 12))]
             ],
-            justification="center",  # Centro dei bottoni
-            element_justification="center",  # Centro degli elementi nella colonna
-        )]
+            justification="right",  # Centro dei bottoni
+            element_justification="center",  # Centro degli elementi nella colonna,
+            expand_x=True, expand_y=True,
+            pad=(10, 15)
+        )],
+        [
+            sg.Column(
+                [
+                    [sg.InputText(tooltip="Enter todo", key="todo", size = (48, 1), font=("Helvetica", 12))]
+                ]
+                , pad = (30,0)),
+            sg.Column(
+                [
+                    [sg.Button("OK", size=(17, 2), button_color=("white", "green"))]
+                ]
+                ,element_justification="center",
+                expand_x=True, expand_y=True,
+                pad=(10,15))
+        ]
     ]
 
 
