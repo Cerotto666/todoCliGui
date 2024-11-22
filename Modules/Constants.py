@@ -15,11 +15,9 @@ class Actions:
     EDIT_CANCELLA = 3
 
 class Windows_name:
-    HOME = 0
-    CREA = 1
+    HOME = 1
     MODIFICA = 2
     VISUALIZZA = 3
-    CANCELLA = 4
 
 
 directory = Path("./Files")
