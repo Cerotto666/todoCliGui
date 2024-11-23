@@ -29,3 +29,34 @@ def crea(window):
                 
     ws.exit_crea(window)
 
+def rinomina(window):
+
+    ws.init_rinomina(window)
+    is_clear = True
+    file_to_rename = ""
+    while is_clear:
+        event, values = window.read()
+        if event in (sg.WINDOW_CLOSED, "Esci"):
+            is_clear = False
+        elif event == "CANCELLA":
+            is_clear = False
+        elif event == "todos":
+            file_to_rename = values['todos'][0]
+            window['OK'].update(disabled=False)
+            window['todo'].update(disabled=False, value=file_to_rename)
+        elif event == "OK":
+            if values['todo'] != "":
+                new_name = values['todo']
+                try:
+                    f.rename(file_to_rename, new_name)
+                    is_clear = False
+                except FileNotFoundError:
+                    sg.popup_ok("Il file che vuoi modificare non esiste")
+                except FileExistsError:
+                    sg.popup_ok("Stai sovrascrivendo un file")
+            else:
+                sg.popup_ok("Il nome file non può essere vuoto")
+    ws.exit_rinomina(window)
+
+
+

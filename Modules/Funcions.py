@@ -94,4 +94,13 @@ def modifica_file(todos, new_todo, modifica_indice, indice):
 def elimina_todo(todos, elimina_indice, indice):
     todos.pop(int(elimina_indice) - 1)
     save_todos(int(indice), todos)
+
+def rename(old_name, new_name):
+    new_file_path = Constants.directory / f"{new_name}.txt"
+    old_file_path = Constants.directory / f"{old_name}.txt"
+    if new_file_path.exists():
+            raise FileExistsError(f"Il file '{new_file_path}' esiste già.")
+    if not old_file_path.exists():
+        raise  FileNotFoundError(f"Il file '{old_file_path}' non esiste")
+    old_file_path.rename(new_file_path)
     

@@ -10,13 +10,14 @@ def handle_home():
     window['todos'].update(values=files)
 
     while True:
+        print("Main")
         event, values = window.read()
         if event in (sg.WINDOW_CLOSED, "Esci"):
             break
         elif event == "CREA":
             a.crea(window)
         elif event == "RINOMINA":
-            print("rinomina")
+            a.rinomina(window)
         elif event == "CANCELLA":
             print("Cancella")
         elif event == "MODIFICA":

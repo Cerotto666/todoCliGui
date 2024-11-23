@@ -23,6 +23,7 @@ class Windows_name:
 class windows_status:
     BASE = "Action: "
     CREA = "CREA"
+    RINOMINA = "RINOMINA"
 
 
 directory = Path("./Files")
