@@ -8,7 +8,7 @@ def listFile(gui=False):
     for index, file_path in enumerate(Constants.directory.iterdir()):
         if file_path.is_file() and file_path.suffix == ".txt":
             if gui:
-                file_list.append(file_path.name)
+                file_list.append(file_path.stem)
             else:
                 file_list.append(str(index + 1) + ") - " +file_path.name)
     return file_list
@@ -35,8 +35,15 @@ def init():
 
 def crea(filename):
     file_path = Constants.directory / f"{filename}.txt"
-    file_path.touch(exist_ok=True)
-    return f"File creato: {file_path}"
+    if not file_path.exists():
+        file_path.touch(exist_ok=True)
+        return f"File creato: {file_path}"
+    else:
+        return "NO"
+
+def sovrascrivi(filename):
+    file_path = Constants.directory / f"{filename}.txt"
+    file_path.write_text("")
 
 
 def is_todos(indice):

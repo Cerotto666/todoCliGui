@@ -1,5 +1,6 @@
 from pathlib import Path
 
+
 """
 Classe che contiene i valori costanti utilizzati nel codice
 """
@@ -18,6 +19,10 @@ class Windows_name:
     HOME = 1
     MODIFICA = 2
     VISUALIZZA = 3
+
+class windows_status:
+    BASE = "Action: "
+    CREA = "CREA"
 
 
 directory = Path("./Files")

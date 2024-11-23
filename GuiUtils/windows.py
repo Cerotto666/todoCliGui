@@ -1,11 +1,13 @@
 import PySimpleGUI as sg
 from GuiUtils import utils as u
+from Modules.Constants import windows_status as ws
 
 def get_layout_home():
     return [
         [sg.Column([[sg.Text("TODO APP", font=("Helvetica", 20), justification="center", size=(20, 1))]],
                    justification="center")],
         [sg.Column([[sg.Text("_" * 80, justification="center")]], justification="center")],
+        [sg.Column([[sg.Text(ws.BASE, font=("Helvetica", 20), key="action")]], justification="Left")],
         [sg.Column(
             [
                 [sg.Listbox(values=["a","b","c"], key="todos", enable_events=True, size = [60,20], expand_x=True, expand_y=True,pad=(30,15))]
@@ -28,7 +30,7 @@ def get_layout_home():
         [
             sg.Column(
                 [
-                    [sg.InputText(tooltip="Enter todo", key="todo", size = (48, 1), font=("Helvetica", 12))]
+                    [sg.InputText(tooltip="Enter todo", key="todo", size = (48, 1), font=("Helvetica", 12), disabled=True)]
                 ]
                 , pad = (30,0)),
             sg.Column(

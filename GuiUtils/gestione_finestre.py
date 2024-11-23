@@ -1,4 +1,4 @@
-from GuiUtils import windows as w
+from GuiUtils import windows as w, actions as a
 import PySimpleGUI as sg
 from Modules.Constants import Windows_name as wn
 from Modules import Funcions as f
@@ -13,10 +13,10 @@ def handle_home():
         event, values = window.read()
         if event in (sg.WINDOW_CLOSED, "Esci"):
             break
+        elif event == "CREA":
+            a.crea(window)
         elif event == "RINOMINA":
             print("rinomina")
-        elif event == "CREA":
-            print("crea")
         elif event == "CANCELLA":
             print("Cancella")
         elif event == "MODIFICA":
