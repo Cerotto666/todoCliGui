@@ -80,3 +80,33 @@ def cancella(window):
 
     ws.exit_cancella(window)
 
+def visualizza(window, values):
+    file_to_visualize = values['visualizza_file'][0]
+    todos = f.get_todos_file(file_to_visualize)
+    dones = f.get_dones_file(file_to_visualize)
+    window['visualizza_todos'].update(values=todos)
+    window['visualizza_done'].update(values=dones)
+
+def init_modifica(window, filename):
+    todos = f.get_todos_file(filename)
+    dones = f.get_dones_file(filename)
+    window['visualizza_todos_modifica'].update(values=todos)
+    window['visualizza_dones_modifica'].update(values=dones)
+
+def text_clicked(window, event, values):
+    window['modifica_modifica'].update(disabled=False)
+    window['cancella_modifica'].update(disabled=False)
+    window['todo_to_edit'].update(disabled=False)
+    if event == "visualizza_todos_modifica":
+        window['mark_as'].update(text="MARK AS DONE", disabled=False)
+        todo_to_edit = values['visualizza_todos_modifica'][0]
+        window['todo_to_edit'].update(value=todo_to_edit)
+        window['visualizza_dones_modifica'].update(set_to_index=[])
+    else:
+        window['mark_as'].update(text="MARK AS TODO", disabled=False)
+        todo_to_edit = values['visualizza_dones_modifica'][0]
+        window['todo_to_edit'].update(value=todo_to_edit)
+        window['visualizza_todos_modifica'].update(set_to_index=[])
+
+
+

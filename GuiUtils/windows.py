@@ -47,8 +47,31 @@ def get_layout_home():
 
 def get_layout_modifica():
     return [
-        [sg.Text("MODIFICA")],
-        [sg.Button("HOME")]
+        [
+            sg.Column([
+                [sg.Text("TODOS", font=("Helvetica", 20), justification="center", size=(20, 1))],
+                [sg.Listbox(values = [], key="visualizza_todos_modifica", enable_events=True, size = (40,20), expand_x=True, expand_y=True,pad=(30,15), font=("Helvetica", 14))],
+                [sg.Button("MARK AS", key = "mark_as", size=(15, 2), button_color=("white", "#dc3545"), font=("Helvetica", 12), disabled=True)]
+            ],
+            element_justification="center"),
+            sg.Column([
+                [sg.Text("DONES", font=("Helvetica", 20), justification="center", size=(20, 1))],
+                [sg.Listbox(values=[], key="visualizza_dones_modifica", enable_events=True, size=(40, 20),
+                            expand_x=True, expand_y=True, pad=(30, 15), font=("Helvetica", 14))],
+                [sg.Button("INDIETRO", key="indietro_modifica", size=(15, 2), button_color=("white", "#dc3545"),
+                           font=("Helvetica", 12))]
+            ],
+            element_justification="center")
+        ],
+        [
+            sg.Column([
+                [
+                    sg.InputText( key="todo_to_edit", size = (60, 1), font=("Helvetica", 16), disabled=True),
+                    sg.Button("MODIFICA", key="modifica_modifica", size=(17, 3), button_color=("white", "#6c757d"), font=("Helvetica", 12), disabled=True),
+                    sg.Button("CANCELLA", key="cancella_modifica", size=(17, 3), button_color=("white", "#dc3545"), font=("Helvetica", 12), disabled=True)
+                ]
+            ])
+        ]
     ]
 
 def get_layout_visualizza():

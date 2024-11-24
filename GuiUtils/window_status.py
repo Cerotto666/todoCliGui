@@ -1,5 +1,6 @@
 from Modules.Constants import windows_status as ws
 from Modules import Funcions as f
+from GuiUtils import windows as w
 def init_crea(window):
     window['action'].update(value=ws.BASE + ws.CREA)
     window['todo'].update(disabled=False)
@@ -60,3 +61,6 @@ def exit_cancella(window):
     file_list = f.listFile(True)
     window['todos'].update(values=file_list)
     window['todo'].update(value="")
+
+
+

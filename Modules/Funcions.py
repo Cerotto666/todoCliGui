@@ -1,6 +1,7 @@
-
-import os
+import PySimpleGUI as sg
 from Modules import Constants
+import os
+import sys
 
 
 def listFile(gui=False):
@@ -121,9 +122,18 @@ def rename(old_name, new_name):
     old_file_path.rename(new_file_path)
     
 def init_gui():
+    if getattr(sys, 'frozen', False):
+        base_path = sys._MEIPASS  # Percorso temporaneo nell'eseguibile
+    else:
+        base_path = os.path.dirname(__file__)
     init()
+    sg.theme("DarkBlue14")
     lista_file = [file.stem for file in Constants.directory.iterdir() if file.is_file()]
     for file in lista_file:
         done_file = Constants.direcotry_done / f"{file}_done.txt"
         if not done_file.exists():
             done_file.touch(exist_ok=True)
+    return Constants.Windows_name.HOME
+
+
+
