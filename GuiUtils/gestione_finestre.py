@@ -19,7 +19,7 @@ def handle_home():
         elif event == "RINOMINA":
             a.rinomina(window)
         elif event == "CANCELLA":
-            print("Cancella")
+            a.cancella(window)
         elif event == "MODIFICA":
             window.close()
             return wn.MODIFICA
@@ -47,14 +47,24 @@ def handle_modifica():
 
 
 def handle_visualizza():
+    print("Visualizza")
     layout = w.get_layout_visualizza()
-    window = sg.Window("Visualizza", layout)
+    window = sg.Window("Visualizza", layout, finalize=True)
+    files = f.listFile(True)
+    todos = []
+    window['visualizza_file'].update(values=files)
 
     while True:
         event, values = window.read()
         if event in (sg.WINDOW_CLOSED, "Esci"):
             break
-        elif event == "HOME":
+        elif event == "visualizza_file":
+            file_to_visualize = values['visualizza_file'][0]
+            todos = f.get_todos_file(file_to_visualize)
+            dones = f.get_dones_file(file_to_visualize)
+            window['visualizza_todos'].update(values=todos)
+            window['visualizza_done'].update(values=dones)
+        elif event == "INDIETRO":
             window.close()
             return wn.HOME
 

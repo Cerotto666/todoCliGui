@@ -24,6 +24,8 @@ class windows_status:
     BASE = "Action: "
     CREA = "CREA"
     RINOMINA = "RINOMINA"
+    CANCELLA = "CANCELLA"
 
 
 directory = Path("./Files")
+direcotry_done = Path("./Files/Done")

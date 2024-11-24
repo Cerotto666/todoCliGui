@@ -10,17 +10,17 @@ def get_layout_home():
         [sg.Column([[sg.Text(ws.BASE, font=("Helvetica", 20), key="action")]], justification="Left")],
         [sg.Column(
             [
-                [sg.Listbox(values=["a","b","c"], key="todos", enable_events=True, size = (60,20), expand_x=True, expand_y=True,pad=(30,15))]
+                [sg.Listbox(values = [], key="todos", enable_events=True, size = (60,12), expand_x=True, expand_y=True,pad=(30,15), font=("Helvetica", 16))]
             ]),
         sg.Column(
             [
-                [sg.Button("CREA", key="CREA", size=(15, 2), button_color=("white", "#28a745"), font=("Helvetica", 12))],
-                [sg.Button("RINOMINA", key="RINOMINA", size=(15, 2), button_color=("white", "#6c757d"), font=("Helvetica", 12))],
-                [sg.Button("MODIFICA", key="MODIFICA", size=(15, 2), button_color=("white", "#007bff"), font=("Helvetica", 12))],
-                [sg.Button("VISUALIZZA", key = "VISUALIZZA", size=(15, 2), button_color=("white", "#17a2b8"), font=("Helvetica", 12))],
-                [sg.Button("CANCELLA", key = "CANCELLA", size=(15, 2), button_color=("white", "#dc3545"), font=("Helvetica", 12))],
+                [sg.Button("CREA", key="CREA", size=(17, 3), button_color=("white", "#28a745"), font=("Helvetica", 12))],
+                [sg.Button("RINOMINA", key="RINOMINA", size=(17, 3), button_color=("white", "#6c757d"), font=("Helvetica", 12))],
+                [sg.Button("MODIFICA", key="MODIFICA", size=(17, 3), button_color=("white", "#007bff"), font=("Helvetica", 12))],
+                [sg.Button("VISUALIZZA", key = "VISUALIZZA", size=(17, 3), button_color=("white", "#17a2b8"), font=("Helvetica", 12))],
+                [sg.Button("CANCELLA", key = "CANCELLA", size=(17, 3), button_color=("white", "#dc3545"), font=("Helvetica", 12))],
                 [sg.Text("")],  # Spazio vuoto
-                [sg.Button("Esci", key="Esci", size=(15, 2), button_color=("white", "#6C757D"), font=("Helvetica", 12))]
+                [sg.Button("Esci", key="Esci", size=(17, 3), button_color=("white", "#6C757D"), font=("Helvetica", 12))]
             ],
             justification="right",  # Centro dei bottoni
             element_justification="center",  # Centro degli elementi nella colonna,
@@ -30,12 +30,12 @@ def get_layout_home():
         [
             sg.Column(
                 [
-                    [sg.InputText(tooltip="Enter todo", key="todo", size = (48, 1), font=("Helvetica", 12), disabled=True)]
+                    [sg.InputText(tooltip="Enter todo", key="todo", size = (60, 1), font=("Helvetica", 16), disabled=True)]
                 ]
-                , pad = (30,0)),
+                , pad = (38,0)),
             sg.Column(
                 [
-                    [sg.Button("OK", size=(17, 2), button_color=("white", "green"))]
+                    [sg.Button("OK", size=(17, 3), button_color=("white", "green"), font=("Helvetica", 12),pad=(15,0))]
                 ]
                 ,element_justification="center",
                 expand_x=True, expand_y=True,
@@ -53,8 +53,38 @@ def get_layout_modifica():
 
 def get_layout_visualizza():
     return [
-        [sg.Text("VISUALIZZA")],
-        [sg.Button("HOME")]
+        [
+            sg.Column([
+                [sg.Text("TODO", font=("Helvetica", 14), justification="center", size=(20, 1))],
+                [sg.Listbox(values = [], key="visualizza_todos", enable_events=False, size = (40,10), expand_x=True, expand_y=True,pad=(30,15), font=("Helvetica", 14))],
+                [sg.Text("DONE", font=("Helvetica", 14), justification="center", size=(20, 1))],
+                [sg.Listbox(values=[], key="visualizza_done", enable_events=False, size=(40, 10), expand_x=True, expand_y=True, pad=(30, 15), font=("Helvetica", 14))]
+            ],
+                justification="left",  # Centro dei bottoni
+                element_justification="center",  # Centro degli elementi nella colonna,
+                expand_x=True, expand_y=True,
+                pad=(10, 15)
+            ),
+            sg.Column([
+                [sg.Text("LISTA FILE", font=("Helvetica", 14), justification="center", size=(20, 1))],
+                [sg.Listbox(values = [], key="visualizza_file", enable_events=True, size=(40, 12), expand_x=True, expand_y=True,pad=(30, 15), font=("Helvetica", 16))]
+            ],
+                justification="right",  # Centro dei bottoni
+                element_justification="center",  # Centro degli elementi nella colonna,
+                expand_x=True, expand_y=True,
+                pad=(10, 15)
+            )
+        ],
+        [
+            sg.Column([
+                [sg.Button("INDIETRO", key = "INDIETRO", size=(15, 2), button_color=("white", "#dc3545"), font=("Helvetica", 12))]
+            ],
+                justification="center",  # Centro dei bottoni
+                element_justification="center",  # Centro degli elementi nella colonna,
+                expand_x=True, expand_y=True,
+                pad=(10, 15)
+            )
+        ]
     ]
 
 def get_layout_bye():

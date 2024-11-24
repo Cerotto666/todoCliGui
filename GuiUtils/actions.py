@@ -58,5 +58,25 @@ def rinomina(window):
                 sg.popup_ok("Il nome file non può essere vuoto")
     ws.exit_rinomina(window)
 
+def cancella(window):
+    ws.init_cancella(window)
+    is_clear = True
+    file_to_delete = ""
 
+    while is_clear:
+        event, values = window.read()
+        if event in (sg.WINDOW_CLOSED, "Esci"):
+            is_clear = False
+        elif event == "CANCELLA":
+            is_clear = False
+        elif event == "todos":
+            file_to_delete = values['todos'][0]
+            window['OK'].update(disabled=False)
+            window['todo'].update(value=file_to_delete)
+        elif event == "OK":
+            if file_to_delete != "":
+                f.cancella_file(file_to_delete)
+            is_clear = False
+
+    ws.exit_cancella(window)
 

@@ -14,6 +14,11 @@ def listFile(gui=False):
     return file_list
 
 
+def cancella_file(filename):
+    file_path = Constants.directory / f"{filename}.txt"
+    if file_path.exists():
+        file_path.unlink()
+
 def cancella(indice):
     lista_file = [file.name for file in Constants.directory.iterdir() if file.is_file()]
     try:
@@ -30,6 +35,8 @@ def cancella(indice):
 
 def init():
     if not Constants.directory.exists():
+        Constants.directory.mkdir(parents=True)
+    if not Constants.direcotry_done.exists():
         Constants.directory.mkdir(parents=True)
 
 
@@ -71,6 +78,15 @@ def get_todos(indice):
     righe = list(file_path.read_text().splitlines())
     return righe
 
+def get_todos_file(file):
+    file_path = Constants.directory / f"{file}.txt"
+    righe = list(file_path.read_text().splitlines())
+    return righe
+
+def get_dones_file(file):
+    file_path = Constants.direcotry_done / f"{file}_done.txt"
+    righe = list(file_path.read_text().splitlines())
+    return righe
 
 def save_todos(indice, todos):
     lista_file = [file.name for file in Constants.directory.iterdir() if file.is_file()]
@@ -104,3 +120,10 @@ def rename(old_name, new_name):
         raise  FileNotFoundError(f"Il file '{old_file_path}' non esiste")
     old_file_path.rename(new_file_path)
     
+def init_gui():
+    init()
+    lista_file = [file.stem for file in Constants.directory.iterdir() if file.is_file()]
+    for file in lista_file:
+        done_file = Constants.direcotry_done / f"{file}_done.txt"
+        if not done_file.exists():
+            done_file.touch(exist_ok=True)

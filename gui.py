@@ -13,6 +13,7 @@ else:
 
 sg.theme("DarkBlue14")
 
+f.init_gui()
 current_window = wn.HOME
 
 while current_window:
