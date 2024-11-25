@@ -107,6 +107,62 @@ def text_clicked(window, event, values):
         todo_to_edit = values['visualizza_dones_modifica'][0]
         window['todo_to_edit'].update(value=todo_to_edit)
         window['visualizza_todos_modifica'].update(set_to_index=[])
+    return todo_to_edit
+
+def mark_as(window, file_name, selected_element):
+    if window['mark_as'].ButtonText == "MARK AS DONE":
+        todos = f.get_todos_file(file_name)
+        todos.remove(selected_element)
+        dones = f.get_dones_file(file_name)
+        dones.append(selected_element)
+        window['visualizza_todos_modifica'].update(values=todos)
+        window['visualizza_dones_modifica'].update(values=dones)
+    else:
+        todos = f.get_todos_file(file_name)
+        todos.append(selected_element)
+        dones = f.get_dones_file(file_name)
+        dones.remove(selected_element)
+        window['visualizza_todos_modifica'].update(values=todos)
+        window['visualizza_dones_modifica'].update(values=dones)
+    f.save_files(todos, dones, file_name)
+
+def reset_modifica(window):
+    window['modifica_modifica'].update(disabled=True)
+    window['cancella_modifica'].update(disabled=True)
+    window['todo_to_edit'].update(disabled=True, value = "")
+    window['mark_as'].update(text="MARK AS", disabled=True)
+
+def modifica_elemento(window, file_name, selected_element, values, is_modifica):
+    if window['mark_as'].ButtonText == "MARK AS DONE":
+        todos = f.get_todos_file(file_name)
+        new_todos = values['todo_to_edit']
+        if is_modifica:
+            index = todos.index(selected_element)
+            if new_todos != "":
+                todos[index] = new_todos
+            else:
+                sg.popup_ok("Il nome dell'elemento non può essere vuoto")
+        else:
+            todos.remove(new_todos)
+        f.save_file(todos, file_name, True)
+        window['visualizza_todos_modifica'].update(values=todos)
+    else:
+        dones = f.get_dones_file(file_name)
+        new_dones = values['todo_to_edit']
+        if is_modifica:
+            index = dones.index(selected_element)
+            if new_dones != "":
+                dones[index] = new_dones
+            else:
+                sg.popup_ok("Il nome dell'elemento non può essere vuoto")
+        else:
+            dones.remove(new_dones)
+        window['visualizza_dones_modifica'].update(values=dones)
+        f.save_file(dones, file_name, False)
+
+
+
+
 
 
 

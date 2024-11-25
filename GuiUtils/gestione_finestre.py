@@ -40,18 +40,23 @@ def handle_modifica():
     window = sg.Window("Modifica", layout, finalize=True)
     global file_name
     a.init_modifica(window, file_name)
+    selected_element = ""
 
     while True:
         event, values = window.read()
         if event in (sg.WINDOW_CLOSED, "Esci"):
             break
         elif event in ("visualizza_todos_modifica", "visualizza_dones_modifica"):
-            a.text_clicked(window, event, values)
+            selected_element = a.text_clicked(window, event, values)
         elif event == "mark_as":
-            if window['mark_as'].ButtonText == "MARK AS DONE":
-                print("MARK AS DONE")
-            else:
-                print("MARK AS TODO")
+            a.mark_as(window, file_name, selected_element)
+            a.reset_modifica(window)
+        elif event == "modifica_modifica":
+            a.modifica_elemento(window, file_name, selected_element, values, True)
+            a.reset_modifica(window)
+        elif event == "cancella_modifica":
+            a.modifica_elemento(window, file_name, selected_element, values, False)
+            a.reset_modifica(window)
         elif event == "indietro_modifica":
             window.close()
             return wn.HOME

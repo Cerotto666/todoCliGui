@@ -17,8 +17,11 @@ def listFile(gui=False):
 
 def cancella_file(filename):
     file_path = Constants.directory / f"{filename}.txt"
+    file_path_dones = Constants.direcotry_done / f"{filename}_done.txt"
     if file_path.exists():
         file_path.unlink()
+    if file_path_dones.exists():
+        file_path_dones.unlink()
 
 def cancella(indice):
     lista_file = [file.name for file in Constants.directory.iterdir() if file.is_file()]
@@ -43,8 +46,10 @@ def init():
 
 def crea(filename):
     file_path = Constants.directory / f"{filename}.txt"
+    file_path_done = Constants.direcotry_done / f"{filename}_done.txt"
     if not file_path.exists():
         file_path.touch(exist_ok=True)
+        file_path_done.touch(exist_ok=True)
         return f"File creato: {file_path}"
     else:
         return "NO"
@@ -95,6 +100,24 @@ def save_todos(indice, todos):
     with file_path.open("w") as file:
         file.write("\n".join(todos))
 
+def save_files(todos, dones, file_name):
+    file_path_todos = Constants.directory / f"{file_name}.txt"
+    file_path_dones = Constants.direcotry_done / f"{file_name}_done.txt"
+    with file_path_todos.open("w") as file:
+        file.write("\n".join(todos))
+    with file_path_dones.open("w") as file:
+        file.write("\n".join(dones))
+
+def save_file(list_to_save, file_name, is_todos):
+    if is_todos:
+        file_path_todos = Constants.directory / f"{file_name}.txt"
+        with file_path_todos.open("w") as file:
+            file.write("\n".join(list_to_save))
+    else:
+        file_path_dones = Constants.direcotry_done / f"{file_name}_done.txt"
+        with file_path_dones.open("w") as file:
+            file.write("\n".join(list_to_save))
+
 
 def aggiungi_todo(indice, new_todo):
     os.system("cls")
@@ -115,11 +138,14 @@ def elimina_todo(todos, elimina_indice, indice):
 def rename(old_name, new_name):
     new_file_path = Constants.directory / f"{new_name}.txt"
     old_file_path = Constants.directory / f"{old_name}.txt"
+    new_file_path_dones = Constants.direcotry_done / f"{new_name}_done.txt"
+    old_file_path_dones = Constants.direcotry_done / f"{old_name}_done.txt"
     if new_file_path.exists():
             raise FileExistsError(f"Il file '{new_file_path}' esiste già.")
     if not old_file_path.exists():
         raise  FileNotFoundError(f"Il file '{old_file_path}' non esiste")
     old_file_path.rename(new_file_path)
+    old_file_path_dones.rename(new_file_path_dones)
     
 def init_gui():
     if getattr(sys, 'frozen', False):
