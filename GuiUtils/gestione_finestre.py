@@ -57,6 +57,9 @@ def handle_modifica():
         elif event == "cancella_modifica":
             a.modifica_elemento(window, file_name, selected_element, values, False)
             a.reset_modifica(window)
+        elif event == "aggiungi_modifica":
+            if a.aggiungi_modifica(window, file_name, values):
+                a.reset_modifica(window)
         elif event == "indietro_modifica":
             window.close()
             return wn.HOME

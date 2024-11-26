@@ -68,7 +68,9 @@ def get_layout_modifica():
                 [
                     sg.InputText( key="todo_to_edit", size = (60, 1), font=("Helvetica", 16), disabled=True),
                     sg.Button("MODIFICA", key="modifica_modifica", size=(17, 3), button_color=("white", "#6c757d"), font=("Helvetica", 12), disabled=True),
-                    sg.Button("CANCELLA", key="cancella_modifica", size=(17, 3), button_color=("white", "#dc3545"), font=("Helvetica", 12), disabled=True)
+                    sg.Button("CANCELLA", key="cancella_modifica", size=(17, 3), button_color=("white", "#dc3545"), font=("Helvetica", 12), disabled=True),
+                    sg.Button("AGGIUNGI", key="aggiungi_modifica", size=(17, 3), button_color=("white", "#dc2266"),
+                              font=("Helvetica", 12), disabled=False)
                 ]
             ])
         ]

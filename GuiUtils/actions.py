@@ -96,6 +96,7 @@ def init_modifica(window, filename):
 def text_clicked(window, event, values):
     window['modifica_modifica'].update(disabled=False)
     window['cancella_modifica'].update(disabled=False)
+    window['aggiungi_modifica'].update(text="ANNULLA")
     window['todo_to_edit'].update(disabled=False)
     if event == "visualizza_todos_modifica":
         window['mark_as'].update(text="MARK AS DONE", disabled=False)
@@ -131,6 +132,8 @@ def reset_modifica(window):
     window['cancella_modifica'].update(disabled=True)
     window['todo_to_edit'].update(disabled=True, value = "")
     window['mark_as'].update(text="MARK AS", disabled=True)
+    window['visualizza_todos_modifica'].update(set_to_index=[])
+    window['visualizza_dones_modifica'].update(set_to_index=[])
 
 def modifica_elemento(window, file_name, selected_element, values, is_modifica):
     if window['mark_as'].ButtonText == "MARK AS DONE":
@@ -159,6 +162,27 @@ def modifica_elemento(window, file_name, selected_element, values, is_modifica):
             dones.remove(new_dones)
         window['visualizza_dones_modifica'].update(values=dones)
         f.save_file(dones, file_name, False)
+
+def aggiungi_modifica(window, file_name, values):
+    if window['aggiungi_modifica'].ButtonText == "AGGIUNGI":
+        window['todo_to_edit'].update(disabled=False, value="")
+        window['aggiungi_modifica'].update(text="OK")
+        return False
+    elif window['aggiungi_modifica'].ButtonText == "ANNULLA":
+        window['aggiungi_modifica'].update(text="AGGIUNGI")
+        return True
+    else:
+        window['todo_to_edit'].update(disabled=True, value="")
+        window['aggiungi_modifica'].update(text="AGGIUNGI")
+        if values['todo_to_edit'] != "":
+            todos = f.get_todos_file(file_name)
+            new_todos = values['todo_to_edit']
+            todos.append(new_todos)
+            f.save_file(todos, file_name, True)
+            window['visualizza_todos_modifica'].update(values=todos)
+        else:
+            sg.popup_ok("Il testo non può essere vuoto")
+    return True
 
 
 
