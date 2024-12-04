@@ -134,6 +134,7 @@ def reset_modifica(window):
     window['mark_as'].update(text="MARK AS", disabled=True)
     window['visualizza_todos_modifica'].update(set_to_index=[])
     window['visualizza_dones_modifica'].update(set_to_index=[])
+    window['aggiungi_modifica'].update(text="AGGIUNGI")
 
 def modifica_elemento(window, file_name, selected_element, values, is_modifica):
     if window['mark_as'].ButtonText == "MARK AS DONE":

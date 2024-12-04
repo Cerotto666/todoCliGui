@@ -1,10 +1,17 @@
+"""
+MAin ->
+    GestioneFinestre ->
+        Windows(Layouts)
+        Actons(Gestione eventi) ->
+            WindowStatus (Init ed Exit del layout per ogni azione)
 
+"""
 from Modules.Constants import Windows_name as wn
-from GuiUtils import windows, gestione_finestre as gf
+from GuiUtils import gestione_finestre as gf
 from Modules import Funcions as f
 
-current_window = f.init_gui()
 file_name = ""
+current_window = f.init_gui()
 
 while current_window:
     if current_window == wn.HOME:
@@ -14,4 +21,4 @@ while current_window:
     elif current_window == wn.VISUALIZZA:
         current_window = gf.handle_visualizza()
 
-gf.handle_bye()
+gf.handle_bye(f.get_base_path())

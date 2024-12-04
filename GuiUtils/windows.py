@@ -112,12 +112,12 @@ def get_layout_visualizza():
         ]
     ]
 
-def get_layout_bye():
+def get_layout_bye(base_path):
 
-    image_path = "Images/bye.png"
+
     new_size = (200, 200)
 
-    resized_img = u.resize_image(image_path, new_size)
+    resized_img = u.resize_image(new_size, base_path)
     return [
         [sg.Image(data=resized_img)],  # Cambia "path/to/your/image.png" con il percorso dell'immagine
         [sg.Text("Grazie per aver usato la nostra applicazione!",

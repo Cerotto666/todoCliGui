@@ -88,8 +88,8 @@ def handle_visualizza():
     window.close()
     return None
 
-def handle_bye():
-    layout = w.get_layout_bye()
+def handle_bye(base_path):
+    layout = w.get_layout_bye(base_path)
     window = sg.Window("BYE", layout, element_justification="center", finalize=True)
     window.read()
     window.close()

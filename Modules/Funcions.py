@@ -41,7 +41,7 @@ def init():
     if not Constants.directory.exists():
         Constants.directory.mkdir(parents=True)
     if not Constants.direcotry_done.exists():
-        Constants.directory.mkdir(parents=True)
+        Constants.direcotry_done.mkdir()
 
 
 def crea(filename):
@@ -148,10 +148,7 @@ def rename(old_name, new_name):
     old_file_path_dones.rename(new_file_path_dones)
     
 def init_gui():
-    if getattr(sys, 'frozen', False):
-        base_path = sys._MEIPASS  # Percorso temporaneo nell'eseguibile
-    else:
-        base_path = os.path.dirname(__file__)
+
     init()
     sg.theme("DarkBlue14")
     lista_file = [file.stem for file in Constants.directory.iterdir() if file.is_file()]
@@ -160,6 +157,13 @@ def init_gui():
         if not done_file.exists():
             done_file.touch(exist_ok=True)
     return Constants.Windows_name.HOME
+
+def get_base_path():
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, "Images\\bye.png")
+    else:
+        return os.path.join(os.path.abspath("."), "Images\\bye.png")
+
 
 
 
