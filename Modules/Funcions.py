@@ -2,6 +2,7 @@ import PySimpleGUI as sg
 from Modules import Constants
 import os
 import sys
+from GuiUtils import windows as w
 
 
 def listFile(gui=False):
@@ -156,7 +157,8 @@ def init_gui():
         done_file = Constants.direcotry_done / f"{file}_done.txt"
         if not done_file.exists():
             done_file.touch(exist_ok=True)
-    return Constants.Windows_name.HOME
+
+    return (Constants.Windows_name.HOME, (100,20))
 
 def get_base_path():
     if hasattr(sys, '_MEIPASS'):
